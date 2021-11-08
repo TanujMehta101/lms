@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.set('view engine', 'ejs');
 // database connection
 const dbURI = "mongodb+srv://user:user123@cluster0.wdn9u.mongodb.net/node-auth?retryWrites=true&w=majority";
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen(port))
   .catch((err) => console.log(err));
 
 // routes
